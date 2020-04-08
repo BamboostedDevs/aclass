@@ -1,0 +1,28 @@
+{
+  "name": "aclass",
+  "version": "0.0.1",
+  "description": "Smart, automated presence list checker.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BamboostedDevs/aclass.git"
+  },
+  "author": "bamboosted team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BamboostedDevs/aclass/issues"
+  },
+  "homepage": "https://github.com/BamboostedDevs/aclass#readme",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "next": "^9.3.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "unstated-next": "^1.1.0"
+  }
+}

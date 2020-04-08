@@ -3,8 +3,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-const char *ssid = "Dom";
-const char *pass = "Monikasu123456";
+const char *ssid = "ask";
+const char *pass = "czekolada";
 #define greenLed 16 // D0
 #define RST_PIN 5   // D1
 #define SS_PIN 4    // D2
@@ -64,7 +64,7 @@ void postUID(const String UID_tag)
   Serial.println("Sending UID tag");
   HTTPClient http;
 
-  http.begin("http://192.168.1.102:3000/api/uid");
+  http.begin("http://192.168.43.233:3000/api/uid");
   http.addHeader("Content-Type", "text/plain");
 
   int httpCode = http.POST(UID_tag);

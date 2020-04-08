@@ -6,6 +6,7 @@ var mode = { mode: "wait", class: false };
   - "wait" - wait for a teacher to touch the sensor, if is a teacher then proceed
   - "check" - check the list for a class, ends with the starting teacher touching the sensor
 */
+
 var db = {};
 fs.readFile("db.json", "utf8", function readFileCallback(err, data) {
   if (err) {

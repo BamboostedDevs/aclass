@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-const url = "http://localhost:3000/api/uid";
+import axios from "axios";
+const url = "/api/uid";
 
 function useNewStudent() {
   const [name, setName] = useState("");
@@ -25,20 +26,15 @@ export default function index() {
 
   useEffect(() => {
     setInterval(() => {
-      fetch(url).then(async (res) => {
-        const _mode = await res.json();
-        setMode(_mode);
-      });
+      axios.get(url).then((_mode) => setMode(_mode.data));
     }, 100);
   }, []);
 
   return (
     <>
       <button
-        onClick={() => {
-          fetch(url, {
-            method: "delete",
-          });
+        onClick={async () => {
+          axios.delete(url);
         }}
       >
         Reset
@@ -54,54 +50,42 @@ export default function index() {
       <div>
         <input
           placeholder="Full name & surname"
-          value={newStudent.name}
-          onChange={newStudent.onChange}
-        />
-        <input placeholder="Class - 4TM" disabled />
-        <button
-          onClick={() => {
-            fetch(url, {
-              method: "put",
-              headers: {
-                "Content-type": "application/json",
-              },
-              body: JSON.stringify({
-                name: newStudent.name,
-                class: newStudent._class,
-              }),
-            });
-            newTeacher.clear();
-            newStudent.clear();
-          }}
-        >
-          Add a student
-        </button>
-      </div>
-      <div>
-        <input
-          placeholder="Full name & surname"
           value={newTeacher.name}
           onChange={newTeacher.onChange}
         />
         <input placeholder="Class - 4TM" disabled />
         <button
           onClick={() => {
-            fetch(url, {
-              method: "put",
-              headers: {
-                "Content-type": "application/json",
-              },
-              body: JSON.stringify({
-                name: newTeacher.name,
-                class: newTeacher._class,
-                teacher: true,
-              }),
+            axios.put(url, {
+              name: newTeacher.name,
+              class: newTeacher._class,
+              teacher: true,
             });
             newTeacher.clear();
             newStudent.clear();
           }}
         >
           Add a teacher
+        </button>
+      </div>
+      <div>
+        <input
+          placeholder="Full name & surname"
+          value={newStudent.name}
+          onChange={newStudent.onChange}
+        />
+        <input placeholder="Class - 4TM" disabled />
+        <button
+          onClick={() => {
+            axios.put(url, {
+              name: newStudent.name,
+              class: newStudent._class,
+            });
+            newTeacher.clear();
+            newStudent.clear();
+          }}
+        >
+          Add a student
         </button>
       </div>
       <div>
